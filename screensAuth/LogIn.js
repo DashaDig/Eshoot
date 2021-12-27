@@ -23,7 +23,7 @@ export default function StartPage() {
         <View style={styles.blockForObj}>
                     <EntryField type={'logIn'} text={'Логин'} />
                     <EntryField type={'password'} text={'Пароль'} paddingTop={'true'} password={true} />
-                    <Button text={'Войти'} />
+                    <Button text={'Войти'} ssr={'App'}/>
                     {/* <TextSsr type={'forgotPass'} text={'Забыли пароль?'} /> */}
                     <TextSsr text={'Нет аккаунта? '} bold={'Зарегистрироваться'} ssr={'SignUp'} />
                 </View>
