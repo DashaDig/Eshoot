@@ -28,7 +28,7 @@ export default function StartPage() {
             paddingTop={"true"}
           />
           <Select />
-          <Button text={"Зарегистрироваться"} />
+          <Button text={"Зарегистрироваться"} ssr={'App'}/>
         </View>
       </View>
       <View style={styles.screenBorders}></View>

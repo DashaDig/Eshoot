@@ -1,4 +1,5 @@
 import * as React from "react";
+import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Logo from "../components/logo";
@@ -21,7 +22,9 @@ export default function App() {
         <Button text={"Войти"} type={"main"} ssr={"LogIn"} />
         <Button text={"Регистрация"} type={"registration"} ssr={"SignUp"} />
       </View>
+      <StatusBar style="auto" />
     </LinearGradient>
+    
   );
 }
 

@@ -1,10 +1,6 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import {
-    useFonts,
-    Roboto_500Medium,
-  } from '@expo-google-fonts/roboto';
 
 export default function Button(props) {
     const navigation = useNavigation(); 
