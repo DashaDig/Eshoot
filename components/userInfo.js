@@ -12,8 +12,7 @@ export default function Info(props) {
 
 const styles = StyleSheet.create({
   conteiner: {
-    marginTop: 16,
-    marginLeft: 16,
+    marginBottom: 16,
     alignItems:'flex-start'
   },
   heading: {

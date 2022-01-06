@@ -4,10 +4,22 @@ import StartPage from "./screensAuth/StartPage";
 import LogIn from "./screensAuth/LogIn";
 import SignUp from "./screensAuth/SignUp";
 import SignUpNext from "./screensAuth/SignUpNext";
+
 import Profile from "./screens/Profile";
+
 import Serch from "./screens/Serch";
+import SerchCustomer from "./screens/SerchCustomer";
+import OrderRegistration from "./screensOrdering/OrderRegistration";
+import Photosession from "./screensOrdering/Photosession";
+import Reportage from "./screensOrdering/Reportage";
+import Subject from "./screensOrdering/Subject";
+import Date from "./screensOrdering/Date";
+import Requirements from "./screensOrdering/Requirements";
+
 import Orders from "./screens/Orders";
+
 import Message from "./screens/Message";
+
 import Calendar from "./screens/Calendar";
 
 import { NavigationContainer } from "@react-navigation/native";
@@ -56,6 +68,55 @@ export default function Navigate() {
             headerShown: false,
           }}
         />
+        <Stack.Screen
+          name="SerchCustomer"
+          component={SerchCustomer}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="OrderRegistration"
+          component={OrderRegistration}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Photosession"
+          component={Photosession}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Reportage"
+          component={Reportage}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Subject"
+          component={Subject}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Date"
+          component={Date}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Requirements"
+          component={Requirements}
+          options={{
+            headerShown: false,
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -71,18 +132,34 @@ function App() {
           tabBarLabel: "Поиск",
         }}
       />
-      <Tab.Screen name="Orders" component={Orders} options={{
+      <Tab.Screen
+        name="Orders"
+        component={Orders}
+        options={{
           tabBarLabel: "Заказы",
-        }} />
-      <Tab.Screen name="Message" component={Message} options={{
+        }}
+      />
+      <Tab.Screen
+        name="Message"
+        component={Message}
+        options={{
           tabBarLabel: "Диалоги",
-        }} />
-      <Tab.Screen name="Calendar" component={Calendar} options={{
+        }}
+      />
+      <Tab.Screen
+        name="Calendar"
+        component={Calendar}
+        options={{
           tabBarLabel: "Календарь",
-        }}/>
-      <Tab.Screen name="Profile" component={Profile} options={{
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
           tabBarLabel: "Профиль",
-        }}/>
+        }}
+      />
     </Tab.Navigator>
   );
 }

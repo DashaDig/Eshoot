@@ -1,14 +1,16 @@
-import React, { useState } from "react";
-import { StyleSheet, Dimensions, View, Image, Text } from "react-native";
+import React from "react";
+import { StyleSheet, Dimensions, View, Image, Text, TouchableOpacity } from "react-native";
 import { Shadow } from "react-native-shadow-2";
+import { useNavigation } from '@react-navigation/native';
 
 let screenW = Dimensions.get("window").width;
 
 export default function Photographer(props) {
+  const navigation = useNavigation();
   return (
     <View style={{marginBottom: 8,}}>
       <Shadow startColor={"rgba(39,60,131,0.1)"}>
-        <View style={styles.block}>
+        <TouchableOpacity onPress={() => navigation.navigate(props.ssr, {surname:'Кочергин', name:'Константин', patronymic:'Анатольевич'})} style={styles.block}>
           <View style={{ display: "flex", flexDirection: "row" }}>
             <Image
               source={require("../assets/avatar.png")}
@@ -21,11 +23,11 @@ export default function Photographer(props) {
               </Text>
             </View>
           </View>
-          <Text style={styles.fio}>
+          <Text style={styles.info}>
             Информация о том что может о себе человек из сферы фотографии
             рассказать, умещенные в три абзаца
           </Text>
-          <View style={{ display: "flex", flexDirection: "row", marginTop: 8 }}>
+          <View style={{ display: "flex", flexDirection: "row", marginTop: 16 }}>
             <Image
               source={{
                 uri: "https://4tololo.ru/sites/default/files/images/20163004154523.jpg?itok=8flfXa-P",
@@ -45,7 +47,7 @@ export default function Photographer(props) {
               style={styles.photos}
             />
           </View>
-        </View>
+        </TouchableOpacity>
       </Shadow>
     </View>
   );
@@ -54,9 +56,9 @@ export default function Photographer(props) {
 var styles = StyleSheet.create({
   block: {
     width: screenW - 32,
-    height: 228,
+    height: 248,
     borderRadius: 5,
-    paddingTop: 10,
+    paddingTop: 12,
     paddingHorizontal: 20,
   },
   avatar: {
@@ -70,6 +72,12 @@ var styles = StyleSheet.create({
     fontStyle: "normal",
     fontFamily: "Roboto_400Regular",
     paddingTop: 5,
+  },
+  info:{
+    fontSize: 16,
+    fontStyle: "normal",
+    fontFamily: "Roboto_400Regular",
+    marginTop: 12,
   },
   tags: {
     fontSize: 12,

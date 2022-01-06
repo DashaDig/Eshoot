@@ -46,7 +46,7 @@ export default function Button(props) {
 
 var styles = StyleSheet.create({
   button: {
-    marginTop: 46,
+    marginTop: 16,
     marginBottom: 16,
     alignItems: "flex-start",
   },

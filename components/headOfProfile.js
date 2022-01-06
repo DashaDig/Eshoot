@@ -1,11 +1,11 @@
 import * as React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 
-export default function Users() {
+export default function Users(params) {
   return (
     <View style={styles.conteiner}>
       <Image source={require("../assets/avatar.png")} style={styles.avatar} />
-      <Text style={styles.fio}>Дигтяренко Дарья{"\n"}Евгеньевна</Text>
+      <Text style={styles.fio}>{params.surnameC} {params.nameC}{"\n"}{params.patronymicC}</Text>
     </View>
   );
 }

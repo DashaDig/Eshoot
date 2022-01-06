@@ -1,62 +1,36 @@
-import * as React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
-import Logo from "../components/logo";
-import Button from "../components/button_start";
+import React from "react";
+import { StyleSheet, ScrollView, Image, View, Dimensions } from "react-native";
+import Header from "../components/header";
+import Serch from "../components/serch";
+import Button from "../components/buttonModal";
+import Card from "../components/photographer_сard";
 
-export default function App() {
+let screenW = Dimensions.get("window").width;
+
+export default function SerchPage() {
   return (
-    <LinearGradient
-      colors={["#8A9EE2", "#3C4F8F"]}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 1 }}
-      style={styles.background}
-    >
-      <View style={styles.screenBorders}></View>
-      <View style={styles.content}>
-        <Logo resolution={logoResolution} />
-        <Text style={styles.test}>Eshoot</Text>
-      </View>
-      <View style={styles.screenBorders}>
-        <Button text={"Войти"} type={"main"} ssr={"LogIn"} />
-        <Button text={"Регистрация"} type={"registration"} ssr={"SignUp"} />
-      </View>
-    </LinearGradient>
+    <View style={{ backgroundColor: "white", flex: 1 }}>
+      <Header text={"Заказы"} />
+      <ScrollView>
+        <View style={styles.conteiner}>
+          
+        </View>
+      </ScrollView>
+    </View>
   );
 }
 
-const logoResolution = {
-  width: 101,
-  height: 101,
-};
-
 const styles = StyleSheet.create({
-  background: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    top: 0,
-    height: "100%",
+  conteiner: {
+    paddingTop: 16,
+    paddingRight: 16,
+    paddingLeft: 16,
   },
-  screenBorders: {
+  serch: {
     flex: 1,
-    paddingRight: 16,
-    paddingLeft: 16,
+    flexDirection: "row",
   },
-  content: {
-    flex: 2,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingRight: 16,
-    paddingLeft: 16,
-  },
-  test: {
-    color: "white",
-    fontWeight: "400",
-    fontSize: 24,
-    textShadowColor: "rgba(255, 255, 255, 0.3)",
-    textShadowRadius: 10,
-    top: 8,
-    fontFamily: "Roboto_400Regular",
+  filter: {
+    top: 4,
   },
 });
