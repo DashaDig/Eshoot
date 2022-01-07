@@ -20,7 +20,8 @@ export default function Button(props) {
       ]}
     >
       <TouchableOpacity
-        onPress={props.back?() => navigation.goBack():() => navigation.navigate(props.ssr)}
+        onPress={props.back?() => navigation.goBack():props.goStart?()=>navigation.popToTop():() => navigation.navigate(props.ssr)}
+        
         style={styles.button}
       >
         <Text style={styles.text}>

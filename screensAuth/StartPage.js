@@ -19,7 +19,7 @@ export default function App() {
         <Text style={styles.test}>Eshoot</Text>
       </View>
       <View style={styles.screenBorders}>
-        <Button text={"Войти"} type={"main"} ssr={"Date"} />
+        <Button text={"Войти"} type={"main"} ssr={"LogIn"} />
         <Button text={"Регистрация"} type={"registration"} ssr={"SignUp"} />
       </View>
       <StatusBar style="auto" />

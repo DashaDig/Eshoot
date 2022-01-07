@@ -10,7 +10,7 @@ export default function Photographer(props) {
   return (
     <View style={{marginBottom: 8,}}>
       <Shadow startColor={"rgba(39,60,131,0.1)"}>
-        <TouchableOpacity onPress={() => navigation.navigate(props.ssr, {surname:'Кочергин', name:'Константин', patronymic:'Анатольевич'})} style={styles.block}>
+        <TouchableOpacity onPress={() => navigation.navigate('SerchCustomer', {surname:'Кочергин', name:'Константин', patronymic:'Анатольевич'})} style={styles.block}>
           <View style={{ display: "flex", flexDirection: "row" }}>
             <Image
               source={require("../assets/avatar.png")}

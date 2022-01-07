@@ -10,6 +10,7 @@ export default function Input(props) {
           placeholder={props.text}
           placeholderTextColor="black"
           style={styles.placeholder}
+          keyboardType={props.keyboard}
         />
       </View>
     </Shadow>

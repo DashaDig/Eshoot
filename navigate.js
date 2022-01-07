@@ -75,7 +75,8 @@ export default function Navigate() {
             headerShown: false,
           }}
         />
-        <Stack.Screen
+        <Stack.Group navigationKey={'GetOrder'}>
+          <Stack.Screen
           name="OrderRegistration"
           component={OrderRegistration}
           options={{
@@ -117,6 +118,8 @@ export default function Navigate() {
             headerShown: false,
           }}
         />
+        </Stack.Group>
+        
       </Stack.Navigator>
     </NavigationContainer>
   );

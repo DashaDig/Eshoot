@@ -20,9 +20,9 @@ export default function SerchPage() {
         </View>
         <Button text={"По умолчанию ▼"} />
         
-        <Card ssr={'SerchCustomer'}/>
-        <Card ssr={'SerchCustomer'}/>
-        <Card ssr={'SerchCustomer'}/>
+        <Card />
+        <Card />
+        <Card />
       </View>
       </ScrollView>
       
