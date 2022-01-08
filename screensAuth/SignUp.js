@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Logo from "../components/logo";
@@ -6,8 +6,42 @@ import Glass from "../components/glass";
 import EntryField from "../components/entryField";
 import Button from "../components/button";
 import TextSsr from "../components/textSsr";
+import { useNavigation } from "@react-navigation/native";
 
-export default function StartPage() {
+export default function SignUp() {
+  const navigation = useNavigation();
+
+  const [error, setError] = useState("");
+  const [username, setLogin] = React.useState("jopa");
+  const [password, setPassword] = React.useState("jopa");
+  const [passwordSecond, setPasswordSecond] = React.useState("jopa");
+  const onChangeLogin = (username) => {
+    setLogin(username);
+  };
+  const onChangePassword = (password) => {
+    setPassword(password);
+  };
+  const onChangeSecondPassword = (password) => {
+    setPasswordSecond(password);
+  };
+
+  async function handleSubmit(params) {
+    try {
+      setError("");
+      if (password !== passwordSecond) {
+        console.log("Не совпадают пароли");
+        return setError(error);
+      }
+      navigation.navigate("SignUpNext", {
+        username: username,
+        password: password,
+      });
+    } catch (error) {
+      setError("Ошибка при обработке запросов");
+      console.log(error);
+    }
+  }
+
   return (
     <LinearGradient
       colors={["#8A9EE2", "#3C4F8F"]}
@@ -20,20 +54,30 @@ export default function StartPage() {
         <Glass height={343} heightBorder={347} />
         <Logo resolution={logoResolution} type={"onGlass"} />
         <View style={styles.blockForObj}>
-          <EntryField type={"logIn"} text={"Логин"} />
+          <EntryField
+            type={"logIn"}
+            text={"Логин"}
+            onChangeData={onChangeLogin}
+          />
           <EntryField
             type={"password"}
             text={"Пароль"}
             paddingTop={"true"}
             password={true}
+            onChangeData={onChangePassword}
           />
           <EntryField
             type={"password"}
             text={"Повторить пароль"}
             paddingTop={"true"}
             password={true}
+            onChangeData={onChangeSecondPassword}
           />
-          <Button text={"Продолжить"} ssr={"SignUpNext"} />
+          <Button
+            submit={true}
+            text={"Продолжить"}
+            handleSubmit={handleSubmit}
+          />
           <TextSsr text={"Есть аккаунт? "} bold={"Войти"} ssr={"LogIn"} />
         </View>
       </View>

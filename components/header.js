@@ -1,6 +1,7 @@
 import * as React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { Shadow } from "react-native-shadow-2";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Header(props) {
   return (
@@ -10,7 +11,7 @@ export default function Header(props) {
           <Back isBackNeed={props.back} />
           <Text style={styles.heading}>{props.text}</Text>
         </View>
-        <Right isRightNeed={props.rightIcon} />
+        <Right isRightNeed={props.rightIcon} type={props.type}/>
       </View>
     </Shadow>
   );
@@ -18,13 +19,15 @@ export default function Header(props) {
 
 function Back(props) {
   const isBackNeed = props.isBackNeed;
+  const navigation = useNavigation();
   if (isBackNeed) {
     return (
-      <Image
-        source={require("../assets/back.png")}
-        style={styles.settingsBack}
-        // onPress={() => navigation.goBack()}
-      />
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Image
+          source={require("../assets/back.png")}
+          style={styles.settingsBack}
+        />
+      </TouchableOpacity>
     );
   }
   return false;
@@ -36,15 +39,11 @@ function Right(props) {
     return (
       <Image
         source={
-          props.text === "Личный кабинет"
+          props.type === "Profile"
             ? require("../assets/settings.png")
             : require("../assets/bell.png")
         }
-        style={
-          props.text === "Личный кабинет"
-            ? styles.settings
-            : styles.settingsbell
-        }
+        style={props.type === "Profile" ? styles.settings : styles.settingsbell}
       />
     );
   }

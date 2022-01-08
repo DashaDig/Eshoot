@@ -1,28 +1,30 @@
 import React, { useState, useRef } from "react";
 import { Image, StyleSheet, View, Text } from "react-native";
-// import SelectDropdown from 'react-native-select-dropdown'
 import DropDownPicker from 'react-native-dropdown-picker';
 
-export default function Select() {
+export default function Select(props) {
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
     const [items, setItems] = useState([
       {
           label: 'Фотограф',
-           value: 'photographer',
+           value: 'Photographer',
            icon: () => <Image source={require('../assets/camera.png') } style={styles.iconStyle} />
         },
       {
           label: 'Пользователь',
-           value: 'user',
+           value: 'Customer',
            icon: () => <Image source={require('../assets/usersIcon.png')} style={styles.iconStyle} />
         }
     ]);
   
+    const onChange = (event) => props.onChangeData(event);
+
     return (
       <DropDownPicker
         open={open}
         value={value}
+        onChangeValue={onChange}
         items={items}
         setOpen={setOpen}
         setValue={setValue}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
@@ -14,14 +14,19 @@ export default function Button(props) {
         styles.linearGradient,
         {
           width: props.width === "" ? "auto" : props.width,
-          height:42,
+          height: 42,
           marginRight: props.marginRight === "" ? "" : props.marginRight,
         },
       ]}
     >
       <TouchableOpacity
-        onPress={props.back?() => navigation.goBack():props.goStart?()=>navigation.popToTop():() => navigation.navigate(props.ssr)}
-        
+        onPress={
+          props.back
+            ? () => navigation.goBack()
+            : props.submit
+            ? props.handleSubmit
+            :  () => navigation.navigate(props.ssr)
+        }
         style={styles.button}
       >
         <Text style={styles.text}>

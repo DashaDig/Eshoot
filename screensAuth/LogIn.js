@@ -1,13 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Logo from "../components/logo";
 import Glass from "../components/glass";
-import EntryField from '../components/entryField';
-import Button from '../components/button';
-import TextSsr from '../components/textSsr';
+import EntryField from "../components/entryField";
+import Button from "../components/button";
+import TextSsr from "../components/textSsr";
+import { useNavigation } from "@react-navigation/native";
+import { useAuth } from "../context/AuthContext";
 
-export default function StartPage() {
+export default function LogIn() {
+  const [username, setLogin] = React.useState("jopa");
+  const [password, setPassword] = React.useState("jopa");
+  const onChangeLogin = (username) => {
+    setLogin(username);
+  };
+  const onChangePassword = (password) => {
+    setPassword(password);
+  };
+
+
+  const [error, setError] = useState('');
+  const {login} = useAuth();
+  const navigation = useNavigation();
+
+  async function handleSubmit(params) {
+    try{
+      setError("");
+      const checkLogin = await login(username, password);
+      if (checkLogin && checkLogin.error) {
+        console.log('Неверно введен логин или пароль')
+        return setError(checkLogin.error);
+      }
+      navigation.navigate("App")
+    } catch (error){
+      setError('Ошибка при входе в систему')
+      console.log(error)
+    }
+  }
+
+
   return (
     <LinearGradient
       colors={["#8A9EE2", "#3C4F8F"]}
@@ -17,16 +49,35 @@ export default function StartPage() {
     >
       <View style={styles.screenBorders}></View>
       <View style={styles.content}>
-        {/* <Glass height={320} heightBorder={324} /> */}
         <Glass height={287} heightBorder={291} />
         <Logo resolution={logoResolution} type={"onGlass"} />
         <View style={styles.blockForObj}>
-                    <EntryField type={'logIn'} text={'Логин'} />
-                    <EntryField type={'password'} text={'Пароль'} paddingTop={'true'} password={true} />
-                    <Button text={'Войти'} ssr={'App'}/>
-                    {/* <TextSsr type={'forgotPass'} text={'Забыли пароль?'} /> */}
-                    <TextSsr text={'Нет аккаунта? '} bold={'Зарегистрироваться'} ssr={'SignUp'} />
-                </View>
+          <EntryField
+            type={"logIn"}
+            text={"Логин"}
+            onChangeData={onChangeLogin}
+          />
+          <EntryField
+            type={"password"}
+            text={"Пароль"}
+            paddingTop={"true"}
+            password={true}
+            onChangeData={onChangePassword}
+          />
+          <Button
+            submit={true}
+            text={"Войти"}
+            ssr={"App"}
+            username={username}
+            password={password}
+            handleSubmit={handleSubmit}
+          />
+          <TextSsr
+            text={"Нет аккаунта? "}
+            bold={"Зарегистрироваться"}
+            ssr={"SignUp"}
+          />
+        </View>
       </View>
       <View style={styles.screenBorders}></View>
     </LinearGradient>

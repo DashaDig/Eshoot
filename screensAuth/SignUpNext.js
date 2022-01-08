@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import Logo from "../components/logo";
@@ -6,8 +6,58 @@ import Glass from "../components/glass";
 import EntryField from "../components/entryField";
 import Button from "../components/button";
 import Select from "../components/selectDrop";
+import { useNavigation } from "@react-navigation/native";
 
-export default function StartPage() {
+import { useAuth } from "../context/AuthContext";
+
+export default function SignUpNext({ route}) {
+  const email =route.params.username;
+  const password =route.params.password;
+  const [firstname, setFirstname] = React.useState("jopa");
+  const [secondname, setSecondname] = React.useState("jopa");
+  const [surname, setSurname] = React.useState("jopa");
+  const [who, setWho] = React.useState("jopa");
+
+  
+  const onChangeFirstname = (name) => {
+    setFirstname(name);
+  };
+  const onChangeSecondname = (name) => {
+    setSecondname(name);
+  };
+  const onChangeSurname = (name) => {
+    setSurname(name);
+  };
+  const onChangeWho = (role) => {
+    setWho(role);
+  };
+
+  const { signup } = useAuth();
+  const [error, setError] = useState("");
+  const navigation = useNavigation();
+
+  async function handleSubmit(e) {
+    try {
+      setError("");
+      const checkLogin = await signup(
+        who,
+        firstname,
+        surname,
+        secondname,
+        email,
+        password
+      );
+      if (checkLogin && checkLogin.error) {
+        console.log('какая то ошибка')
+        return setError(checkLogin.error);
+      }
+      navigation.navigate("App")
+    } catch (error) {
+      console.log('Ошибка при регистрации')
+      setError("Ошибка при регистрации");
+    }
+  }
+
   return (
     <LinearGradient
     colors={["#8A9EE2", "#3C4F8F"]}
@@ -20,15 +70,16 @@ export default function StartPage() {
         <Glass height={360} heightBorder={364} />
         <Logo resolution={logoResolution} type={"onGlass"} />
         <View style={styles.blockForObj}>
-          <EntryField type={"name"} text={"Имя"} />
-          <EntryField type={"surname"} text={"Фамилия"} paddingTop={"true"} />
+          <EntryField type={"name"} text={"Имя"}  onChangeData={onChangeFirstname}/>
+          <EntryField type={"surname"} text={"Фамилия"} paddingTop={"true"} onChangeData={onChangeSurname} />
           <EntryField
             type={"patronymic"}
             text={"Отчество"}
             paddingTop={"true"}
+            onChangeData={onChangeSecondname}
           />
-          <Select />
-          <Button text={"Зарегистрироваться"} ssr={'App'}/>
+          <Select onChangeData={onChangeWho}/>
+          <Button text={"Зарегистрироваться"} submit={true} handleSubmit={handleSubmit}/>
         </View>
       </View>
       <View style={styles.screenBorders}></View>

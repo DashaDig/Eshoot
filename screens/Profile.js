@@ -7,7 +7,7 @@ import Info from "../components/userInfo";
 export default function App() {
   return (
     <View style={{ backgroundColor: "white", flex: 1 }}>
-      <Header text={"Личный кабинет"} />
+      <Header text={"Личный кабинет"} type="Profile" />
       <Users
         surnameC={"Дигтяренко"}
         nameC={"Дарья"}
