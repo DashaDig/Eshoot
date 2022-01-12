@@ -16,6 +16,7 @@ export default function Button(props) {
           width: props.width === "" ? "auto" : props.width,
           height: 42,
           marginRight: props.marginRight === "" ? "" : props.marginRight,
+          marginTop: props.marginTop !== false ? 16 : 0,
         },
       ]}
     >
@@ -25,9 +26,9 @@ export default function Button(props) {
             ? () => navigation.goBack()
             : props.submit
             ? props.handleSubmit
-            :  () => navigation.navigate(props.ssr)
+            : () => navigation.navigate(props.ssr, props.apiData)
         }
-        style={styles.button}
+        style={props.type === "Auth" ? styles.buttonAuth : styles.button}
       >
         <Text style={styles.text}>
           {props.text === "" ? "Пусто" : props.text}
@@ -38,20 +39,25 @@ export default function Button(props) {
 }
 var styles = StyleSheet.create({
   linearGradient: {
-    marginTop: 16,
+    borderRadius: 5,
+  },
+  buttonAuth: {
+    height: 42,
+    alignItems: "center",
     borderRadius: 5,
   },
   button: {
     height: 42,
     alignItems: "center",
     borderRadius: 5,
+    backgroundColor: "#8A9EE2",
   },
   text: {
     color: "#fff",
     fontStyle: "normal",
-    fontFamily: "Roboto_500Medium",
+    fontFamily: "Roboto_400Regular",
     fontSize: 16,
     paddingVertical: 10,
-    letterSpacing: 1,
+    letterSpacing: 0.2,
   },
 });

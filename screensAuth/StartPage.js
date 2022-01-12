@@ -19,8 +19,8 @@ export default function App() {
         <Text style={styles.test}>Eshoot</Text>
       </View>
       <View style={styles.screenBorders}>
-        <Button text={"Войти"} type={"main"} ssr={"LogIn"} />
-        <Button text={"Регистрация"} type={"registration"} ssr={"SignUp"} />
+        <Button type={'Auth'} text={"Войти"} type={"main"} ssr={"LogIn"} />
+        <Button type={'Auth'} text={"Регистрация"} type={"registration"} ssr={"SignUp"} />
       </View>
       <StatusBar style="auto" />
     </LinearGradient>

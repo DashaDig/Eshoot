@@ -4,14 +4,18 @@ import Header from "../components/header";
 import Users from "../components/headOfProfile";
 import Info from "../components/userInfo";
 
+import { useAuth } from "../context/AuthContext";
+
 export default function App() {
+  const { currentUserInfo } = useAuth();
+
   return (
     <View style={{ backgroundColor: "white", flex: 1 }}>
       <Header text={"Личный кабинет"} type="Profile" />
       <Users
-        surnameC={"Дигтяренко"}
-        nameC={"Дарья"}
-        patronymicC={"Евгеньевна"}
+        surnameC={currentUserInfo.last_name}
+        nameC={currentUserInfo.first_name}
+        patronymicC={currentUserInfo.middle_name}
       />
       <View style={styles.content}>
         <Info text={"Город"} value={"Екатеринбург"} />

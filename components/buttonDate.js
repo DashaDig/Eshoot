@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {
   StyleSheet,
-  Modal,
+  Modal, Dimensions,
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
@@ -15,6 +15,8 @@ import {
   CalendarList,
   Agenda,
 } from "react-native-calendars";
+
+let screenW = Dimensions.get("window").width;
 
 LocaleConfig.locales["Pn"] = {
   monthNames: [
@@ -161,9 +163,9 @@ var styles = StyleSheet.create({
     paddingLeft: 16,
   },
   calendar: {
-    marginTop: 200,
+    marginTop: 165,
     marginLeft: 16,
-    width: 352,
+    width: screenW-36,
     borderWidth: 2,
     borderRadius: 5,
     borderColor: "#7D94DF",

@@ -79,7 +79,7 @@ export default function SignUpNext({ route}) {
             onChangeData={onChangeSecondname}
           />
           <Select onChangeData={onChangeWho}/>
-          <Button text={"Зарегистрироваться"} submit={true} handleSubmit={handleSubmit}/>
+          <Button type={'Auth'} text={"Зарегистрироваться"} submit={true} handleSubmit={handleSubmit}/>
         </View>
       </View>
       <View style={styles.screenBorders}></View>

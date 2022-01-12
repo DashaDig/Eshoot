@@ -14,25 +14,25 @@ import Card from "../components/orderCard";
 
 const FirstRoute = () => (
   <View style={styles.conteiner}>
+    {/* <Card/>
     <Card/>
-    <Card/>
-    <Card/>
+    <Card/> */}
   </View>
 );
 
 const SecondRoute = () => (
   <View style={styles.conteiner}>
     <Card/>
-    <Card/>
-    <Card/>
+    {/* <Card/>
+    <Card/> */}
   </View>
 );
 
 const ThirdRoute = () => (
   <View style={styles.conteiner}>
+    {/* <Card/>
     <Card/>
-    <Card/>
-    <Card/>
+    <Card/> */}
   </View>
 );
 

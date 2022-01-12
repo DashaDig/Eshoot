@@ -10,14 +10,14 @@ export default function Photographer(props) {
   return (
     <View style={{marginBottom: 8,}}>
       <Shadow startColor={"rgba(39,60,131,0.1)"}>
-        <TouchableOpacity onPress={() => navigation.navigate('SerchCustomer', {surname:'Кочергин', name:'Константин', patronymic:'Анатольевич'})} style={styles.block}>
+        <TouchableOpacity onPress={() => navigation.navigate('SerchCustomer', {photographer: props.photographer})} style={styles.block}>
           <View style={{ display: "flex", flexDirection: "row" }}>
             <Image
               source={require("../assets/avatar.png")}
               style={styles.avatar}
             />
             <View>
-              <Text style={styles.fio}>Кочергин Константин</Text>
+              <Text style={styles.fio}>{props.photographer.middle_name} {props.photographer.first_name}</Text>
               <Text style={styles.tags}>
                 #Портретная, #Свадебная, еще 5 жанров
               </Text>

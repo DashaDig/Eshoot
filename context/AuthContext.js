@@ -20,7 +20,19 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
-  const [currentUserInfo, setCurrentUserInfo] = useState();
+  const [currentUserInfo, setCurrentUserInfo] = useState({
+    "first_name": "",
+    "last_name": "",
+    "middle_name": "",
+    "email": "",
+    "phone": "",
+    "birthdate": "",
+    "city": "",
+    "role": "",
+    "created_date": "",
+    "id": "",
+    "password": ""
+  });
 
   const login = async (email, password) => {
     let body = 'username=' + encodeURIComponent(email) + '&password=' + encodeURIComponent(password);
@@ -99,6 +111,7 @@ export function AuthProvider({ children }) {
     const currentUserInCookies = getValueFor("currentUser");
     if (currentUserInCookies) {
       setCurrentUser(currentUserInCookies);
+      userInfo(currentUserInCookies);
     }
     setLoading(false);
   }, []);

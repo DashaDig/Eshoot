@@ -7,7 +7,8 @@ import { Shadow } from "react-native-shadow-2";
 
 import RadioButtonRN from "radio-buttons-react-native";
 
-export default function Photosession() {
+export default function Photosession({ route, navigation }) {
+  const [Pageid, setPageid] = useState(0);
   const data = [
     {
       label: "Портретная",
@@ -39,16 +40,37 @@ export default function Photosession() {
     },
   ];
 
+  function GetType(id) {
+    switch (id) {
+      case 1:
+        return { subtype: "Портретная" };
+      case 2:
+        return { subtype: "Love story" };
+      case 3:
+        return { subtype: "Семейная" };
+      case 4:
+        return { subtype: "Детская" };
+      case 5:
+        return { subtype: "Креативная" };
+      case 6:
+        return { subtype: "Для беременных" };
+      case 7:
+        return { subtype: "Другое" };
+      case 0:
+        return "";
+    }
+  }
+
   return (
     <View style={{ backgroundColor: "white", flex: 1 }}>
       <Header text={"Оформление заказа"} back={true} rightIcon={true} />
       <View style={styles.content}>
-        <Bar />
+        <Bar width={0.3}/>
         <Text style={styles.heading}>Какая фотосессия вам нужна?</Text>
       </View>
       <RadioButtonRN
         data={data}
-        selectedBtn={(e) => console.log(e.id)}
+        selectedBtn={(e) => setPageid(e.id)}
         animationTypes={["pulse"]}
         box={false}
         boxStyle={styles.radio}
@@ -67,7 +89,7 @@ export default function Photosession() {
       <View style={{ position: "absolute", bottom: 30, right: 16 }}>
         <Shadow startColor={"rgba(39,60,131,0.1)"}>
           <View style={styles.button}>
-            <Button text={"Далее"} width={132} ssr={"Date"} />
+            <Button text={"Далее"} width={132} ssr={"Date"} apiData={{...route.params, ...GetType(Pageid)}}/>
           </View>
         </Shadow>
       </View>

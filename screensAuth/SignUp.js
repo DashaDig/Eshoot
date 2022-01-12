@@ -74,6 +74,7 @@ export default function SignUp() {
             onChangeData={onChangeSecondPassword}
           />
           <Button
+            type={"Auth"}
             submit={true}
             text={"Продолжить"}
             handleSubmit={handleSubmit}

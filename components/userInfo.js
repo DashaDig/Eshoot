@@ -20,13 +20,11 @@ const styles = StyleSheet.create({
     fontStyle: "normal",
     color:'#8A8282',
     fontFamily: "Roboto_500Medium",
-    textAlign: "center",
     marginBottom: 8,
   },
   content: {
     fontSize: 16,
     fontStyle: "normal",
     fontFamily: "Roboto_400Regular",
-    textAlign: "center",
   },
 });

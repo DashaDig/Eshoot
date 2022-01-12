@@ -7,7 +7,7 @@ import { Shadow } from "react-native-shadow-2";
 
 import RadioButtonRN from "radio-buttons-react-native";
 
-export default function Reportage() {
+export default function Reportage({ route, navigation }) {
   const id = 0;
   const data = [
     {
@@ -31,7 +31,7 @@ export default function Reportage() {
     <View style={{ backgroundColor: "white", flex: 1 }}>
       <Header text={"Оформление заказа"} back={true} rightIcon={true} />
       <View style={styles.content}>
-        <Bar />
+        <Bar width={0.3}/>
         <Text style={styles.heading}>Репортаж чего вам нужен?</Text>
       </View>
       <RadioButtonRN

@@ -9,13 +9,13 @@ import Button from "../components/button";
 let screenW = Dimensions.get("window").width;
 
 export default function Customer({ route, navigation }) {
-  const { surname, name, patronymic } = route.params;
+  const { photographer } = route.params;
   return (
     <View style={{ backgroundColor: "white", flex: 1 }}>
-      <Header text={surname + " " + name} back={true} />
+      <Header text={photographer.middle_name + " " + photographer.first_name} back={true} />
       <View style={{ flex: 10 }}>
         <ScrollView>
-          <Users surnameC={surname} nameC={name} patronymicC={patronymic} />
+          <Users surnameC={photographer.middle_name} nameC={photographer.first_name} patronymicC={photographer.last_name} />
           <View style={styles.content}>
             <Text style={styles.tag}>
               #Фотосессия #Репортаж #Предметная #Контентная #Семейная #Детская
@@ -46,7 +46,8 @@ export default function Customer({ route, navigation }) {
         <Button
           text={"Заказать"}
           width={(screenW - 48) / 3}
-          ssr={'OrderRegistration'}
+          ssr= {'OrderRegistration'}
+          apiData={{perfomerId:photographer.id}}
         />
       </View>
     </View>

@@ -7,7 +7,7 @@ import { Shadow } from "react-native-shadow-2";
 
 import RadioButtonRN from "radio-buttons-react-native";
 
-export default function Subject() {
+export default function Subject({ route, navigation }) {
   const id = 0;
   const data = [
     {

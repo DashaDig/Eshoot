@@ -7,12 +7,12 @@ import Button from "../components/button";
 import ButtonRadio from "../components/buttonRadio";
 import { Shadow } from "react-native-shadow-2";
 
-export default function Requirements() {
+export default function Requirements({ route, navigation }) {
   return (
     <View style={{ backgroundColor: "white", flex: 1 }}>
       <Header text={"Оформление заказа"} back={true} rightIcon={true} />
       <View style={styles.content}>
-        <Bar />
+        <Bar width={1}/>
         <Text style={styles.heading}>Какие требования{"\n"}к фотографии?</Text>
       </View>
       <ScrollView>

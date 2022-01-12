@@ -5,20 +5,22 @@ import Header from "../components/header";
 import Calendar from "../components/buttonDate";
 import Button from "../components/button";
 import { Shadow } from "react-native-shadow-2";
-// import Input from "../components/inputTime";
+import Input from "../components/inputTime";
 
-export default function Date() {
+export default function Date({ route, navigation }) {
+  // console.log("Получаем: ", route.params);
   return (
     <View style={{ backgroundColor: "white", flex: 1 }}>
       <Header text={"Оформление заказа"} back={true} rightIcon={true} />
       <View style={styles.content}>
-        <Bar />
+        <Bar width={0.7}/>
         <Text style={styles.heading}>Когда планируется съемка?</Text>
         <Calendar />
         <View style={{flexDirection:'row', alignItems:'center', marginTop:16, marginBottom:24}}>
             <Text style={styles.text}>С</Text>
-            {/* <Input width={104}/> */}
+            <Input width={104} />
             <Text style={[styles.text, {marginLeft:24}]}>По</Text>
+            <Input width={104} />
         </View>
         <Text style={styles.headingTwo}>Крайняя дата сдачи фотографий</Text>
         <Calendar />

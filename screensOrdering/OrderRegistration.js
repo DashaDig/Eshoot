@@ -9,7 +9,7 @@ import RadioButtonRN from "radio-buttons-react-native";
 
 
 
-export default function Customer() {
+export default function OrderRegistration({ navigation, route }) {
   const [Pageid, setPageid] = useState(0);
   const data = [
     {
@@ -45,10 +45,26 @@ export default function Customer() {
       case 4:
         return "Subject";
       case 5:
-        return "Subject";
+        return"Subject";
       case 0:
-        console.log("Error");
-        return "Subject";
+        return "";
+    }
+  }
+
+  function GetType(id) {
+    switch (id) {
+      case 1:
+        return {type:"Фотосессия"};
+      case 2:
+        return {type:"Репортаж"};
+      case 3:
+        return {type:"Предметная"};
+      case 4:
+        return {type:"Контентная"};
+      case 5:
+        return {type:"Другое"};
+      case 0:
+        return "";
     }
   }
 
@@ -56,7 +72,7 @@ export default function Customer() {
     <View style={{ backgroundColor: "white", flex: 1 }}>
       <Header text={"Оформление заказа"} back={true} rightIcon={true} />
       <View style={styles.content}>
-        <Bar />
+        <Bar hidden={true} width={0.5}/>
         <Text style={styles.heading}>Выберите вид съемки</Text>
       </View>
       <RadioButtonRN
@@ -73,7 +89,7 @@ export default function Customer() {
       <View style={{ position: "absolute", bottom: 30, right: 16 }}>
         <Shadow startColor={"rgba(39,60,131,0.1)"}>
           <View style={styles.button}>
-            <Button text={"Далее"} width={132} ssr={SSR(Pageid)} />
+            <Button text={"Далее"} width={132} ssr={SSR(Pageid)} apiData={{...route.params, ...GetType(Pageid)}}/>
           </View>
         </Shadow>
       </View>

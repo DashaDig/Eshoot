@@ -8,7 +8,7 @@ import SignUpNext from "./screensAuth/SignUpNext";
 import Profil from "./assets/profile.svg";
 import Calenda from "./assets/calendarMenu.svg";
 import Dm from "./assets/dm.svg";
-import Order from "./assets/orderMenu.svg";
+import Ord from "./assets/orderMenu.svg";
 import Search from "./assets/searchMenu.svg";
 
 import Profile from "./screens/Profile";
@@ -23,6 +23,7 @@ import Date from "./screensOrdering/Date";
 import Requirements from "./screensOrdering/Requirements";
 
 import Orders from "./screens/Orders";
+import Order from "./screens/Order";
 
 import Message from "./screens/Message";
 
@@ -41,7 +42,9 @@ export default function Navigate() {
   return (
     <NavigationContainer>
       <AuthProvider>
-        <Stack.Navigator>
+        <Stack.Navigator 
+        // initialRouteName="App"
+        >
           <Stack.Screen
             name="Start"
             component={StartPage}
@@ -127,6 +130,13 @@ export default function Navigate() {
                 headerShown: false,
               }}
             />
+            <Stack.Screen
+            name="Order"
+            component={Order}
+            options={{
+              headerShown: false,
+            }}
+            />
           </Stack.Group>
         </Stack.Navigator>
       </AuthProvider>
@@ -188,7 +198,7 @@ function App() {
               justifyContent: "center",
             }}
             >
-              <Order style={{ maxWidth: 32, maxHeight: 32 }} />
+              <Ord style={{ maxWidth: 32, maxHeight: 32 }} />
               <Text
                 style={{
                   fontSize: 12,

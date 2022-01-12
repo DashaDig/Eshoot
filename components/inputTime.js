@@ -1,19 +1,41 @@
-import React, { useState }  from "react";
-import { StyleSheet, TextInput, View } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, TextInput, Text, View } from "react-native";
 import { Shadow } from "react-native-shadow-2";
 
 export default function Input(props) {
-    const [state, setState] = useState();
+  const [hour, setHour] = useState("");
+  const [min, setMin] = useState("");
+  const CheckHour = (hour) => {
+    console.log(hour)
+    setHour(Math.min(hour, 23))
+    console.log(Math.min(hour, 23))
+  }
+  const CheckMin = (min) => {
+    setMin(Math.min(min, 59))
+  }
   return (
     <Shadow startColor={"rgba(39,60,131,0.1)"}>
-      <View style={[styles.input, { width: props.width }]}>
+      <View
+        style={[styles.input, { width: props.width, flexDirection: "row" }]}
+      >
         <TextInput
-          placeholder={props.text}
           placeholderTextColor="black"
+          placeholder="00"
+          value={hour}
           style={styles.placeholder}
           keyboardType={"numeric"}
-          value={this.state.time} 
-          onChangeText={(time) => this.setState({ time })}
+          maxLength={2}
+          onChangeText={CheckHour}
+        />
+        <Text>:</Text>
+        <TextInput
+          placeholderTextColor="black"
+          placeholder="00"
+          value={min}
+          style={styles.placeholder}
+          keyboardType={"numeric"}
+          maxLength={2}
+          onChangeText={CheckMin}
         />
       </View>
     </Shadow>
@@ -22,22 +44,13 @@ export default function Input(props) {
 
 var styles = StyleSheet.create({
   input: {
+    justifyContent: "center",
+    alignItems: "center",
     height: 42,
-    paddingLeft: 14,
     borderRadius: 5,
     backgroundColor: "white",
     borderWidth: 1,
     borderColor: "#7D94DF",
-  },
-  inputNext: {
-    width: "100%",
-    height: 42,
-    paddingLeft: 14,
-    borderRadius: 5,
-    backgroundColor: "rgba(255, 255, 255, 0.8)",
-    borderWidth: 1,
-    borderColor: "white",
-    marginTop: 16,
   },
   placeholder: {
     color: "black",

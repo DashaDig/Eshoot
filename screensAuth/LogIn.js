@@ -19,26 +19,24 @@ export default function LogIn() {
     setPassword(password);
   };
 
-
-  const [error, setError] = useState('');
-  const {login} = useAuth();
+  const [error, setError] = useState("");
+  const { login } = useAuth();
   const navigation = useNavigation();
 
   async function handleSubmit(params) {
-    try{
+    try {
       setError("");
       const checkLogin = await login(username, password);
       if (checkLogin && checkLogin.error) {
-        console.log('Неверно введен логин или пароль')
+        console.log("Неверно введен логин или пароль");
         return setError(checkLogin.error);
       }
-      navigation.navigate("App")
-    } catch (error){
-      setError('Ошибка при входе в систему')
-      console.log(error)
+      navigation.navigate("App");
+    } catch (error) {
+      setError("Ошибка при входе в систему");
+      console.log(error);
     }
   }
-
 
   return (
     <LinearGradient
@@ -65,6 +63,7 @@ export default function LogIn() {
             onChangeData={onChangePassword}
           />
           <Button
+            type={"Auth"}
             submit={true}
             text={"Войти"}
             ssr={"App"}
