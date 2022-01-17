@@ -13,57 +13,76 @@ import Info from "../components/userInfo";
 import Input from "../components/input";
 import Button from "../components/button";
 import { Shadow } from "react-native-shadow-2";
+import { useAuth } from "../context/AuthContext";
 
 let screenW = Dimensions.get("window").width;
 
-export default function Order() {
+export default function Order({ route, navigation }) {
+  const { currentUserInfo } = useAuth();
+  const order = route.params.order;
+  const person = route.params.person;
   const [shouldShow, setShouldShow] = useState(false);
   const [shouldShowNotes, setShouldShowNotes] = useState(false);
   const [listOfInfo] = React.useState([
-    { id: 0, head: "Тип", text: "Репортаж: Детский праздник" },
-    { id: 1, head: "Дата", text: "30 Сентября 2000" },
-    { id: 2, head: "Время", text: "14:00-18:00" },
-    { id: 3, head: "Дэдлайн сдачи", text: "30 Сентября 2000" },
+    { id: 0, head: "Тип", text: order.type + ": " + order.subtype },
+    { id: 1, head: "Дата", text: order.date.split("-").reverse().join(".") },
+    {
+      id: 2,
+      head: "Время",
+      text: order.start_time.slice(0, 5) + " - " + order.end_time.slice(0, 5),
+    },
+    {
+      id: 3,
+      head: "Дэдлайн сдачи",
+      text: order.deadline.slice(0, 10).split("-").reverse().join("."),
+    },
     {
       id: 4,
       head: "Локация",
-      text: "г. Екатеринбург, улица Какая-то там, или другой адрес вообще все равно",
+      text: order.address,
+    },
+    {
+      id: 5,
+      head: "Цена",
+      text: order.price,
     },
   ]);
 
   const [listOfDemand] = React.useState([
-    { id: 0, head: "Количество кадров", text: "50" },
-    { id: 1, head: "Ориентация", text: "Альбомная и книжная" },
-    { id: 2, head: "Разрешение", text: "2400×1600 px" },
-    { id: 3, head: "Пропорции", text: "1×1,16×9" },
-    { id: 4, head: "Формат", text: "JPG,RAW" },
+    { id: 0, head: "Количество кадров", text: order.number_of_frames },
+    { id: 1, head: "Ориентация", text: order.orientation },
+    // { id: 2, head: "Разрешение", text: "2400×1600 px" },
+    { id: 2, head: "Пропорции", text: order.proportions },
+    { id: 3, head: "Формат", text: order.file_format },
     {
-      id: 5,
+      id: 4,
       head: "Постобработка",
-      text: "Цветокорекция, удаление грязи и царапин",
+      text: order.post_processing,
     },
   ]);
 
-  const [listOfNotes] = React.useState([
-    {
-      id: 0,
-      head: "Необходимая техника в аренду",
-      text: "https://rentacamera.ru/products/canon-8-15mm-f-4-0l-fisheye-usm",
-    },
-    {
-      id: 1,
-      head: "Нужно взять на съемку",
-      text: "2 синхронизатора, софтбох 50 на 50",
-    },
-    {
-      id: 2,
-      head: "Дресскод или стиль одежды",
-      text: "Деловая, в синих тонах",
-    },
-  ]);
+  // const [listOfNotes] = React.useState([
+  //   {
+  //     id: 0,
+  //     head: "Необходимая техника в аренду",
+  //     text: "https://rentacamera.ru/products/canon-8-15mm-f-4-0l-fisheye-usm",
+  //   },
+  //   {
+  //     id: 1,
+  //     head: "Нужно взять на съемку",
+  //     text: "2 синхронизатора, софтбох 50 на 50",
+  //   },
+  //   {
+  //     id: 2,
+  //     head: "Дресскод или стиль одежды",
+  //     text: "Деловая, в синих тонах",
+  //   },
+  // ]);
+
+  
   return (
     <View style={{ backgroundColor: "white", flex: 1 }}>
-      <Header text={"Заказ №12032193"} back={true} rightIcon={true} />
+      <Header text={"Заказ№ "+ order.id.slice(0, 10)} back={true} rightIcon={true} />
       <ScrollView>
         <View style={styles.conteiner}>
           <View
@@ -75,7 +94,9 @@ export default function Order() {
                 style={styles.avatar}
               />
               <Text style={[styles.textName, { marginLeft: 16 }]}>
-                Дигтяренко Дарья{"\n"}Евгеньевна
+                {person.last_name} {person.first_name}
+                {"\n"}
+                {person.middle_name}
               </Text>
             </View>
             <Text
@@ -87,14 +108,15 @@ export default function Order() {
                 textAlign: "right",
               }}
             >
-              Заказ от:{"\n"}30.11.2021
+              Заказ от:{"\n"}
+              {order.created_date.slice(0, 10).split("-").reverse().join(".")}
             </Text>
           </View>
           <View style={{ marginTop: 16, marginBottom: 16 }}>
             {listOfInfo.map((item) => (
               <Info text={item.head} value={item.text} />
             ))}
-            <View>
+            {/* <View>
               <Text style={styles.textH}>Цена</Text>
               <View style={{ flexDirection: "row" }}>
                 <Input
@@ -108,8 +130,8 @@ export default function Order() {
                   marginTop={false}
                 />
               </View>
-            </View>
-            <View style={{ marginTop: 16, marginBottom: 16 }}>
+            </View> */}
+            <View style={{ marginBottom: 16 }}>
               <Text style={styles.textH}>Референсы</Text>
               <View style={{ flexDirection: "row" }}>
                 <Image
@@ -145,8 +167,7 @@ export default function Order() {
                   ))
                 : null}
             </View>
-            <View>
-                
+            {/* <View>
               <TouchableOpacity
                 onPress={() => setShouldShowNotes(!shouldShowNotes)}
                 style={styles.button}
@@ -158,10 +179,10 @@ export default function Order() {
                     <Info text={item.head} value={item.text} />
                   ))
                 : null}
-            </View>
+            </View> */}
           </View>
         </View>
-        <View style={{marginTop:63}}>
+        <View style={{ marginTop: 63 }}>
           <View style={{ position: "absolute", bottom: 30, left: 16 }}>
             <Shadow startColor={"rgba(39,60,131,0.1)"}>
               <View style={styles.DownButton}>
@@ -169,13 +190,17 @@ export default function Order() {
               </View>
             </Shadow>
           </View>
-          <View style={{ position: "absolute", bottom: 30, right: 16 }}>
-            <Shadow startColor={"rgba(39,60,131,0.1)"}>
-              <View style={styles.DownButton}>
-                <Button text={"Принять"} width={132} ssr={"Date"} />
-              </View>
-            </Shadow>
-          </View>
+          {order.customer_id === currentUserInfo.id ? (
+            <></>
+          ) : (
+            <View style={{ position: "absolute", bottom: 30, right: 16 }}>
+              <Shadow startColor={"rgba(39,60,131,0.1)"}>
+                <View style={styles.DownButton}>
+                  <Button text={"Принять"} width={132} ssr={"Date"} />
+                </View>
+              </Shadow>
+            </View>
+          )}
         </View>
       </ScrollView>
     </View>
