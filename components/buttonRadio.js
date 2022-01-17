@@ -3,12 +3,16 @@ import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 import { Shadow } from "react-native-shadow-2";
 
 export default function ButtonRadio(props) {
+  const changeData = () => {
+    setPress(!press)
+    props.onChangeData({ name: props.text ,isChecked: !press })
+  };
   const [press, setPress] = useState(false);
   return (
     <View style={{marginRight: 8,}}>
       <Shadow startColor={"rgba(39,60,131,0.1)"}>
         <TouchableOpacity
-          onPress={() => setPress(!press)}
+          onPress={changeData}
           style={[
             press ? styles.buttonPress : styles.button,
             { width: props.width },

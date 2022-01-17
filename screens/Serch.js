@@ -15,7 +15,7 @@ export default function SerchPage() {
     const fetchName = async () => {
       try {
         const data = await fetch(
-          "http://192.168.1.2:8080/users/photographers/",
+          "http://192.168.1.8:8080/users/photographers/",
           {
             headers: {
               Authorization: "Bearer " + currentUser,

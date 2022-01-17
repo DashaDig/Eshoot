@@ -14,6 +14,14 @@ const Stack = createStackNavigator();
 
 
 export default function App() {
+
+  fetch('http://192.168.1.2:8080/users/photographers/')
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    console.log(data);
+  });
   
   let [fontLoaded] = useFonts({
     Roboto_400Regular,

@@ -115,6 +115,7 @@ export default function ButtonDate(props) {
               minDate={moment().format('YYYY-MM-DD')}
               firstDay={1}
               onDayPress={(day) => {
+                props.onChangeData(day.dateString)
                 setDate(new Date(day.dateString));
                 setModalVisible(!modalVisible);
               }}

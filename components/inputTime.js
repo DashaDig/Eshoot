@@ -5,14 +5,14 @@ import { Shadow } from "react-native-shadow-2";
 export default function Input(props) {
   const [hour, setHour] = useState("");
   const [min, setMin] = useState("");
-  const CheckHour = (hour) => {
-    console.log(hour)
-    setHour(Math.min(hour, 23))
-    console.log(Math.min(hour, 23))
-  }
-  const CheckMin = (min) => {
-    setMin(Math.min(min, 59))
-  }
+  const CheckHour = (newHour) => {
+    setHour(newHour<24? String(newHour): "23")
+    props.onChangeHour(newHour<24? newHour: 23);
+  };
+  const CheckMin = (newMin) => {
+    setMin(newMin<60? String(newMin): "59")
+    props.onChangeMin(newMin<60? newMin: 59);
+  };
   return (
     <Shadow startColor={"rgba(39,60,131,0.1)"}>
       <View

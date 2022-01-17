@@ -17,15 +17,14 @@ export default function Photographer(props) {
               style={styles.avatar}
             />
             <View>
-              <Text style={styles.fio}>{props.photographer.middle_name} {props.photographer.first_name}</Text>
+              <Text style={styles.fio}>{props.photographer.last_name} {props.photographer.first_name}</Text>
               <Text style={styles.tags}>
                 #Портретная, #Свадебная, еще 5 жанров
               </Text>
             </View>
           </View>
           <Text style={styles.info}>
-            Информация о том что может о себе человек из сферы фотографии
-            рассказать, умещенные в три абзаца
+          {props.photographer.about}
           </Text>
           <View style={{ display: "flex", flexDirection: "row", marginTop: 16 }}>
             <Image

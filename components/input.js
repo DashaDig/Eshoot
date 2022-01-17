@@ -3,12 +3,16 @@ import { StyleSheet, TextInput, View } from "react-native";
 import { Shadow } from "react-native-shadow-2";
 
 export default function Input(props) {
+
+  const onChange = (event) => props.onChangeData(event);
+
   return (
     <Shadow startColor={"rgba(39,60,131,0.1)"}>
       <View style={[styles.input, { width: props.width }]}>
         <TextInput
           placeholder={props.text}
           placeholderTextColor="black"
+          onChangeText={onChange}
           style={styles.placeholder}
           keyboardType={props.keyboard}
         />

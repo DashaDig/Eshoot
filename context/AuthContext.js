@@ -11,7 +11,7 @@ async function getValueFor(key) {
 }
 
 const AuthContext = React.createContext();
-const API_URL = "http://192.168.1.2:8080";
+const API_URL = "http://192.168.1.8:8080";
 
 export function useAuth() {
   return useContext(AuthContext);

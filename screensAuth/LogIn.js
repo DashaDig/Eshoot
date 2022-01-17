@@ -10,8 +10,8 @@ import { useNavigation } from "@react-navigation/native";
 import { useAuth } from "../context/AuthContext";
 
 export default function LogIn() {
-  const [username, setLogin] = React.useState("jopa");
-  const [password, setPassword] = React.useState("jopa");
+  const [username, setLogin] = React.useState("");
+  const [password, setPassword] = React.useState("");
   const onChangeLogin = (username) => {
     setLogin(username);
   };

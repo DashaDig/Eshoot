@@ -12,20 +12,20 @@ export default function Customer({ route, navigation }) {
   const { photographer } = route.params;
   return (
     <View style={{ backgroundColor: "white", flex: 1 }}>
-      <Header text={photographer.middle_name + " " + photographer.first_name} back={true} />
+      <Header text={photographer.last_name + " " + photographer.first_name} back={true} />
       <View style={{ flex: 10 }}>
         <ScrollView>
-          <Users surnameC={photographer.middle_name} nameC={photographer.first_name} patronymicC={photographer.last_name} />
+          <Users surnameC={photographer.last_name} nameC={photographer.first_name} patronymicC={photographer.middle_name} />
           <View style={styles.content}>
             <Text style={styles.tag}>
               #Фотосессия #Репортаж #Предметная #Контентная #Семейная #Детская
               #Детский праздник #Свадьба
             </Text>
             <Text style={styles.heading}>О себе</Text>
-            <About />
-            <Text style={styles.heading}>Портфолио</Text>
+            <About text={photographer.about}/>
+            {/* <Text style={styles.heading}>Портфолио</Text>
             <Portfolio />
-            <Text style={styles.heading}>Заказы</Text>
+            <Text style={styles.heading}>Заказы</Text> */}
           </View>
         </ScrollView>
       </View>

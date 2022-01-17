@@ -42,8 +42,8 @@ export default function SignUpNext({ route}) {
       const checkLogin = await signup(
         who,
         firstname,
-        surname,
         secondname,
+        surname,
         email,
         password
       );

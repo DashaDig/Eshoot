@@ -12,10 +12,7 @@ export default function About(props) {
     <View style={{ marginVertical: 8 }}>
       <Shadow startColor={"rgba(39,60,131,0.1)"}>
         <View style={styles.block}>
-          <Text style={styles.info}>
-            Информация о том что может о себе человек из сферы фотографии
-            рассказать, умещенные в три абзаца...
-          </Text>
+          <Text style={styles.info}>{props.text}</Text>
         </View>
       </Shadow>
       <Button text={"Вся информация"} width={176} />
